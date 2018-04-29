@@ -54,18 +54,12 @@ public class form {
                 int count = 0;
                 math point = new math();
                 record[i] = new math(point.x, point.y, point.r);
-                /////////
-                //circle my;
                 if(i==0) {
                     my = new circle(point.x, point.y, point.r);
                     record_fix[j] = new math(point.x, point.y, point.r);
                     j++;
                     my.setBounds(0,0,400,400);
-//                    labels = new JLabel("1");
-//                    labels.setBounds(point.x+5,point.y+5,5,5);
-//                    my.add(labels);
                     frame.add(my);
-                    //frame.add(labels);
 
                 }
                 else {
@@ -80,15 +74,10 @@ public class form {
                         record_fix[j] = new math(point.x, point.y, point.r);
                         j++;
                         my.setBounds(0,0,400,400);
-//                        labels = new JLabel((j+1)+"");
-//                        labels.setBounds(point.x+5,point.y+5,5,5);
                         frame.add(my);
-//                        frame.add(labels);
-
                     }
                 }
-                //textArea1.append(point.x+" "+point.y+" "+point.r+" "+count+" ");
-                //textArea1.append("J的大小："+j+" ");
+
                 i++;
 
                 for (int i = 0;i<j;i++){
@@ -127,7 +116,6 @@ public class form {
                 line last = new line(circle_point[count-1],circle_point[0]);
                 last.setBounds(0,0,400,400);
                 frame.add(last);
-                //textArea1.append("初始随机距离：" + distance);
                 frame.repaint();
             }
         });
@@ -138,48 +126,17 @@ public class form {
                 formula[] lin = new formula[j];
                 for (int i = 0;i < j-1;i++){
                     lin[i] = new formula(record_fix[i],record_fix[i+1]);
-
-                    //textArea1.append("圆心距1："+ lin.distance + "斜率k：" + lin.k + " ");
                 }
                 lin[j-1] = new formula(record_fix[j-1],record_fix[0]);
                 for (int i = 0;i < j-1;i++) {
-//                    textArea1.append("圆心距：" + lin[i].distance+"斜率k: "+ lin[i].k + "旋转之后的k1:" + Math.tan(lin[i].angle1 - lin[i].angle)
-//                    + "旋转后的k1:" + Math.tan(lin[i].angle1 + lin[i].angle) + " ");
-                    ;
-//                    textArea1.append("圆1：" + "（"+lin[i].find_secant(record_fix[i]).x+","+lin[i].find_secant(record_fix[i]).y+")"
-//                    +"圆1："+ "（"+lin[i].find_anthor(record_fix[i]).x+","+lin[i].find_anthor(record_fix[i]).y+")");
-//                    textArea1.append(j+" " +(lin[i-1].angle + lin[i-1].angle1)+" "+(lin[i-1].angle1 - lin[i-1].angle)+ " ");
-//                    if(lin[i-1].Judege(record_fix[i-1],lin[i-1].find_anthor(record_fix[i-1]),lin[i-1].find_anthor(record_fix[i])))
-//                    {
                         lines_1 = new line(lin[i].find_anthor(record_fix[i]),lin[i].find_anthor(record_fix[i+1]));
                         nodes[i] = new node(record_fix[i],lin[i].find_anthor(record_fix[i]),lin[i].find_secant(record_fix[i]));
                         Q.add(record_fix[i],lin[i].find_anthor(record_fix[i]),lin[i].find_secant(record_fix[i]));
                         lines_1.setBounds(0,0,400,400);
                         frame.add(lines_1);
-//                    }
-//                    else
-//                    {
-//                        line lines_1 = new line(lin[i-1].find_anthor1(record_fix[i-1]),lin[i-1].find_anthor1(record_fix[i]));
-//                        lines_1.setBounds(0,0,400,400);
-//                        frame.add(lines_1);
-//                    }
-//                    if(lin[i-1].Judege(record_fix[i-1],lin[i-1].find_anthor(record_fix[i-1]),lin[i-1].find_anthor(record_fix[i])))
-//                    {
                         lines_2 = new line(lin[i].find_secant(record_fix[i]),lin[i].find_secant(record_fix[i+1]));
                         lines_2.setBounds(0,0,400,400);
                         frame.add(lines_2);
-//                    }
-//                    else
-//                    {
-//                        line lines_2 = new line(lin[i-1].find_secant1(record_fix[i-1]),lin[i-1].find_secant1(record_fix[i]));
-//                        lines_2.setBounds(0,0,400,400);
-//                        frame.add(lines_2);
-//                    }
-//                    point yuanxin_1 = new point(record_fix[i].x,record_fix[i].y);
-//                    point yuanxin_2 = new point(record_fix[i+1].x,record_fix[i+1].y);
-//                    line a = new line(yuanxin_1,yuanxin_2);
-//                    a.setBounds(0,0,400,400);
-//                    frame.add(a);
                 }
                 l1 = new line(lin[j-1].find_secant(record_fix[j-1]),lin[j-1].find_secant(record_fix[0]));
                 frame.add(l1);
@@ -203,14 +160,6 @@ public class form {
                 txt_field.setBounds(450,0,400,400);
                 frame.add(txt_field);
                 frame.repaint();
-//                node a = Q.head;
-//                while (a != Q.rear){
-//                    //textArea1.append("R: "+a.circle.r+" ");
-//                    a.next.mark = Judege(a.next.circle,a.point1,a.next.point1)&&Judege(a.circle,a.prev.point2,a.next.point2);
-//                    if (a.next.mark)
-//                        a = a.next;
-//
-//                }
                 nodes[0].mark = Judege(nodes[0].circle,nodes[j-1].point1,nodes[1].point1)&&Judege(nodes[0].circle,nodes[j-1].point2,nodes[1].point2);
                 for (int i = 1;i <= j-2;i++){
                     if (nodes[0].mark)
@@ -236,11 +185,7 @@ public class form {
                         frame.add(labels);
                     }
                 }
-
-                //j = count;
                 frame.repaint();
-
-
             }
         });
         Button5.addMouseListener(new MouseAdapter() {
@@ -270,7 +215,6 @@ public class form {
                 frame.repaint();
                 int count = 0;
                 int Iteration_count = 1;
-//                double[] distance = new double[1000];
                 math[] fixed = new math[j];
                 point[] circle_point = new point[j];
                 for (int i = 0;i < j;i++)
@@ -317,7 +261,7 @@ public class form {
                     distance_tem1 = distance_tem1 + Distance(circle_point[count-1],circle_point[0]);
                     distance[Iteration_count] = distance_tem1;
                     Iteration_count++;
-                }while (Math.abs(distance[Iteration_count-2]-distance[Iteration_count-1])>Double.MIN_VALUE);
+                }while (Math.abs(distance[Iteration_count-2]-distance[Iteration_count-1])>Double.MIN_VALUE);//迭代
 
                 textArea1.append("最终随机距离：" + distance[Iteration_count-1]+"迭代次数："+(Iteration_count-1));
                 for (int i = 1;i < count;i++) {
@@ -365,23 +309,6 @@ public class form {
     }
 
     public point Iteration(math circle,point a,point b){//算法核心
-//        point c;
-//        double k = -1/(a.y-b.y)/(a.x-b.x);
-//        double angle = Math.atan(k);
-//        double x,y;
-//        x = circle.x + circle.r*Math.cos(angle);
-//        y = circle.y + circle.r*Math.sin(angle);
-//        double distance = Math.abs((a.y-b.y)/(a.x-b.x)*x-y+(a.y-a.x*(a.y-b.y)/(a.x-b.x)))/Math.sqrt(Math.pow((a.y-b.y)/(a.x-b.x),2)+1);
-//        double m,n;
-//        m = circle.x + circle.r*Math.cos(angle+Math.toRadians(180));
-//        n = circle.y + circle.r*Math.sin(angle+Math.toRadians(180));
-//        double distance1 = Math.abs((a.y-b.y)/(a.x-b.x)*m-n+(a.y-a.x*(a.y-b.y)/(a.x-b.x)))/Math.sqrt(Math.pow((a.y-b.y)/(a.x-b.x),2)+1);
-//        if (distance < distance1)
-//            c = new point(x,y);
-//        else
-//            c = new point(m,n);
-//        return c;
-        ///////////
         double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11;
         double r2 = circle.r*circle.r;
         double a1,a2,a3,a4;
@@ -399,14 +326,10 @@ public class form {
         b2 = Math.pow(b_fix.x,2) + Math.pow(b_fix.y,2);
         b3 = 2*Math.pow(circle.r,2)*a_fix.x*b_fix.x+Math.pow(circle.r,2)*Math.pow(a_fix.y,2)+Math.pow(b_fix.x,2)*(Math.pow(circle.r,2)-4*Math.pow(a_fix.y,2))+
                 2*Math.pow(circle.r,2)*a_fix.y*b_fix.y+Math.pow(circle.r,2)*Math.pow(b_fix.y,2)-4*Math.pow(a_fix.y,2)*Math.pow(b_fix.y,2)+Math.pow(a_fix.x,2)*(Math.pow(circle.r,2)-4*b2);
-//        b3 = 2*r2*a.x*b.x+r2*a.y*a.y+b.x*b.x*(r2-4*a.y*a.y)+2*r2*a.y*b.y+r2*b.y*b.y-4*a.y*a.y*b.y*b.y+a.y*a.y*(r2-4*b2);
         b4 = 2*Math.pow(a_fix.x,2)*b_fix.x+b_fix.x*a_fix.y*(a_fix.y-b_fix.y)+a_fix.x*(2*Math.pow(b_fix.x,2)-b_fix.y*(a_fix.y-b_fix.y));
         b5 = Math.pow(b_fix.x,2)*(-1*Math.pow(circle.r,2)+Math.pow(a_fix.y,2))-2*a_fix.x*b_fix.x*(Math.pow(circle.r,2)-a_fix.y*b_fix.y)+Math.pow(a_fix.x,2)*(Math.pow(b_fix.y,2)-Math.pow(circle.r,2));
-//        b5 = b.x*b.x*(a.y*a.y-r2)-2*a.x*b.x*(r2-a.y*b.y)+a.x*a.x*(b.y*b.y-r2);
         b6 = 36*Math.pow(circle.r,2)*(6*b5*Math.pow(b1*b_fix.x+b2*a_fix.x,2)+b3*b4*(b1*b_fix.x+b2*a_fix.x)+6*b1*b2*Math.pow(b4,2));
-//        b6 = 36*r2*(6*b5*(b1*b.x+b2*a.x)*(b1*b.x+b2*a.x)+b3*b4*(b1*b.x+b2*a.x)+6*b1*b2*b4*b4);
         b7 = Math.pow(b3,2)+48*b1*b2*b5+24*Math.pow(circle.r,2)*b4*(b1*b_fix.x+b2*a_fix.x);
-//        b7 = b3*b3+48*b1*b2*b5+24*r2*b4*(b1*b.x+b2*a.x);
         k = -4*Math.pow(b7,3)+4*Math.pow(Math.pow(b3,3)-144*b1*b2*b3*b5+b6,2);
         if (k<0)
             k = 0;
@@ -471,12 +394,11 @@ public class form {
             if (a.y<circle.y&&b.y<circle.y)
                 angle[4] = angle[5] = angle[6] = angle[7] = Math.toRadians(270);
         }
-        //
+        
 
         for (int i=0;i<8;i++){
             circle_po = new point(circle.r*Math.cos(angle[i]),circle.r*Math.sin(angle[i]));
             distance1[i]=Distance(circle_po,a_fix)+Distance(circle_po,b_fix);
-//            textArea1.append("angle: "+angle[i]+" ");
         }
         for (int i = 1;i<8;i++){
             if (distance1[mark]>distance1[i])
@@ -484,23 +406,12 @@ public class form {
             else
                 continue;
         }
-        if ((a3-a4)<0)
-            textArea1.append("mark：0-3 "+mark+"");
-        if ((a3+a4)<0)
-            textArea1.append("mark: 4-7 "+mark+"");
-//        if (k2<0)
-//            textArea1.append("k2:"+k2+"");
+//         if ((a3-a4)<0)
+//             textArea1.append("mark：0-3 "+mark+"");
+//         if ((a3+a4)<0)
+//             textArea1.append("mark: 4-7 "+mark+"");
 
-        //textArea1.append("angle:"+angle[mark]+" ");
-        //textArea1.append("-- "+"b8="+b8+"  "+"b9="+b9+"  "+"k2="+k2+"  "+"a2="+a2+"  ");
-//        if (angle[mark]==0)
-//            textArea1.append("a3-a4= "+(a3-a4)+" "+"a3+a4= "+(a3+a4)+" "+"mark: "+mark+" ");
-//        textArea1.append("mark: "+(a1 / 4 + a2 - Math.sqrt(a3 + a4) / 2)+" ");
-//        b1+" // "+b2+" // "+b3+" // "+b4+" // "+b5+" // "+b6+" // "+b7+" // "+b8+" // "+b9+" // "+b10+" // "+b11+" // "+
         final_point = new point(circle.x+circle.r*Math.cos(angle[mark]),circle.y+circle.r*Math.sin(angle[mark]));
-//        textArea1.append(k2+" // "+a1+" // "+a2+" // "+a3+" // "+a4+" // ");
-//        textArea1.append((a3+a4)+" ---"+(a3-a4)+"    "+(a1/4+a2-Math.sqrt(a3+a4)/2)+"k= "+(-4*Math.pow(b7,3)+4*Math.pow(Math.pow(b3,3)-144*b1*b2*b3*b5+b6,2)));
-        //textArea1.append(1/Math.pow(2,1.0/3.0)*Math.pow(2*Math.pow(b3,3)-288*b1*b2*b3*b5+2*b6+Math.sqrt(-4*Math.pow(b7,3)+4*Math.pow(Math.pow(b3,3)-144*b1*b2*b3*b5+b6,2)),1.0/3.0)+"  ");
         return final_point;
     }
 
